@@ -1,0 +1,71 @@
+/* Contenedor principal gris con borde rojo claro */
+.form-container {
+  background-color: #d8d8d8; 
+  border: 2px solid #ff7b7b; /* Borde rojo suave similar a la imagen */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 40px;
+  border-radius: 4px;
+  max-width: 900px;
+  margin: 40px auto; /* Centra el formulario en la pantalla */
+  font-family: Arial, sans-serif;
+}
+
+/* Usamos Grid para crear las 3 columnas exactas de la imagen */
+.registro-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px 30px; /* Espacio vertical y horizontal entre inputs */
+}
+
+/* Agrupa el texto (label) y la caja (input) */
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+/* Estilo de las cajas blancas */
+.input-group input {
+  padding: 12px;
+  border: 1px solid #ff7b7b; /* Bordes ligeramente rojos */
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Efecto al hacer clic en la caja de texto */
+.input-group input:focus {
+  border-color: #ff3b3b;
+  box-shadow: 0 0 5px rgba(255, 59, 59, 0.4);
+}
+
+/* El botón se acomoda en la primera columna */
+.button-group {
+  grid-column: 1 / 2; /* Lo mantiene alineado a la izquierda */
+  margin-top: 15px;
+}
+
+/* Botón rojo de Confirmar */
+.btn-confirmar {
+  background-color: #ff3b3b; /* Rojo fuerte */
+  color: white;
+  border: none;
+  padding: 12px 35px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%; /* Hace que el botón ocupe el ancho de su columna */
+}
+
+.btn-confirmar:hover {
+  background-color: #d12c2c; /* Rojo más oscuro al pasar el mouse */
+}

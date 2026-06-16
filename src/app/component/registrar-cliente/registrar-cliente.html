@@ -1,0 +1,44 @@
+<div class="form-container">
+  <form (ngSubmit)="guardar()" class="registro-grid">
+    
+    <div class="input-group">
+      <label>Nombre</label>
+      <input [(ngModel)]="request.nombre" name="nombre" />
+    </div>
+
+    <div class="input-group">
+      <label>Apellido Primero</label>
+      <input [(ngModel)]="request.apellidoPrimero" name="apellidoPrimero" />
+    </div>
+
+    <div class="input-group">
+      <label>Apellido Segundo</label>
+      <input [(ngModel)]="request.apellidoSegundo" name="apellidoSegundo" />
+    </div>
+
+    <div class="input-group">
+      <label>Correo electrónico</label>
+      <input type="email" [(ngModel)]="request.email" name="email" />
+    </div>
+
+    <div class="input-group">
+      <label>Teléfono</label>
+      <input [(ngModel)]="request.telefono" name="telefono" />
+    </div>
+
+    <div class="input-group">
+      <label>DNI</label>
+      <input [(ngModel)]="request.numeroDni" name="dni" />
+    </div>
+
+    <div class="input-group">
+      <label>Contrasena</label>
+      <input type="password" [(ngModel)]="request.password" name="password" />
+    </div>
+
+    <div class="button-group">
+      <button type="submit" class="btn-confirmar">Confirmar</button>
+    </div>
+
+  </form>
+</div>

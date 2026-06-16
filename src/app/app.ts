@@ -3,7 +3,10 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true, // Siempre recomendado ponerlo explícitamente
+  imports: [
+    RouterOutlet // Permite inyectar las rutas (como el RegistrarCliente)
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
