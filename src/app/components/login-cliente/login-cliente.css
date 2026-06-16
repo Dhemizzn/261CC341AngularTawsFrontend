@@ -1,13 +1,3 @@
-/*
-.container {
-  margin-top: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  background-color: oklch(53.18% 0.28 296.97);
-}
-*/
 /* Style the outer wrapper container */
 .custom-form-container {
   background-color: #dbdbdb; /* Matches the gray background */
