@@ -1,0 +1,287 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: #1f1f1f;
+  background: #f5f5f5;
+}
+
+.topbar {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7%;
+  background: #111;
+  border-bottom: 7px solid #e53935;
+  color: #fff;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-weight: 700;
+}
+
+.brand img {
+  width: 120px;
+  max-height: 54px;
+  object-fit: contain;
+  background: white;
+  border-radius: 6px;
+}
+
+.logout {
+  border: 1px solid #fff;
+  border-radius: 7px;
+  padding: 10px 16px;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.content {
+  width: min(1180px, calc(100% - 36px));
+  margin: auto;
+  padding: 42px 0 70px;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.eyebrow {
+  color: #e53935;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.title h1 {
+  margin: 8px 0;
+  font-size: clamp(30px, 4vw, 46px);
+}
+
+.title p {
+  margin: 0;
+  color: #666;
+}
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 310px 1fr;
+  gap: 26px;
+}
+
+.summary-card,
+.data-card,
+.state-card {
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 8px 25px rgb(0 0 0 / 9%);
+}
+
+.summary-card {
+  align-self: start;
+  padding: 30px;
+  text-align: center;
+}
+
+.avatar {
+  width: 95px;
+  height: 95px;
+  display: grid;
+  place-items: center;
+  margin: auto;
+  border-radius: 50%;
+  background: #e53935;
+  color: white;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.summary-card h2 {
+  margin: 18px 0 8px;
+}
+
+.summary-card p {
+  color: #666;
+  word-break: break-word;
+}
+
+.member-code {
+  display: grid;
+  gap: 6px;
+  margin-top: 26px;
+  padding: 18px;
+  border-radius: 10px;
+  background: #f6f6f6;
+}
+
+.member-code span {
+  color: #777;
+  font-size: 13px;
+}
+
+.status {
+  width: fit-content;
+  margin: 18px auto 0;
+  padding: 7px 14px;
+  border-radius: 100px;
+  background: #e8f5e9;
+  color: #247a2b;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.data-card {
+  padding: 30px;
+}
+
+.card-header {
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.card-header h2 {
+  margin: 0 0 6px;
+}
+
+.card-header p {
+  margin: 0;
+  color: #777;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 21px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px;
+  border: 1px solid #c8c8c8;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 15px;
+}
+
+input[readonly] {
+  border-color: #e2e2e2;
+  background: #f7f7f7;
+  color: #555;
+}
+
+input:not([readonly]):focus {
+  border-color: #e53935;
+  outline: 3px solid rgb(229 57 53 / 12%);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.primary,
+.secondary {
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.primary {
+  border: 0;
+  background: #e53935;
+  color: #fff;
+}
+
+.secondary {
+  border: 1px solid #aaa;
+  background: white;
+  color: #333;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.alert,
+.state-card {
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+.error {
+  border: 1px solid #ef9a9a;
+  background: #ffebee;
+  color: #b71c1c;
+}
+
+.success {
+  border: 1px solid #a5d6a7;
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+@media (max-width: 850px) {
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .title {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 620px) {
+  .topbar {
+    padding: 12px 18px;
+  }
+
+  .brand span {
+    display: none;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full {
+    grid-column: auto;
+  }
+
+  .actions {
+    flex-direction: column-reverse;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,175 @@
+<div class="page">
+  <header class="topbar">
+    <div class="brand">
+      <img src="/PeruTours.png" alt="Perú Tours">
+      <span>Portal del socio</span>
+    </div>
+
+    <button class="logout" type="button" (click)="cerrarSesion()">
+      Cerrar sesión
+    </button>
+  </header>
+
+  <main class="content">
+    <section class="title">
+      <div>
+        <span class="eyebrow">MI CUENTA</span>
+        <h1>Datos del usuario</h1>
+        <p>Consulta y actualiza tu información personal.</p>
+      </div>
+
+      <button
+        *ngIf="!editando && !loading"
+        class="primary"
+        type="button"
+        (click)="habilitarEdicion()"
+      >
+        Modificar datos
+      </button>
+    </section>
+
+    <div *ngIf="loading" class="state-card">
+      Cargando información...
+    </div>
+
+    <div *ngIf="errorMessage" class="alert error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="successMessage" class="alert success">
+      {{ successMessage }}
+    </div>
+
+    <section
+      *ngIf="cliente && !loading"
+      class="profile-layout"
+    >
+      <aside class="summary-card">
+        <div class="avatar">
+          {{ cliente.nombres.charAt(0) }}
+          {{ cliente.apellidos.charAt(0) }}
+        </div>
+
+        <h2>
+          {{ cliente.nombres }}
+          {{ cliente.apellidos }}
+        </h2>
+
+        <p>{{ cliente.email }}</p>
+
+        <div class="member-code">
+          <span>Código de socio</span>
+          <strong>
+            {{ cliente.codigoSocio || 'Pendiente' }}
+          </strong>
+        </div>
+
+        <div class="status">
+          {{ cliente.estado || 'ACTIVO' }}
+        </div>
+      </aside>
+
+      <section class="data-card">
+        <div class="card-header">
+          <div>
+            <h2>Información personal</h2>
+            <p>Datos asociados a tu cuenta.</p>
+          </div>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="guardar()">
+          <div class="form-grid">
+            <div class="field">
+              <label for="nombres">Nombres</label>
+              <input
+                id="nombres"
+                formControlName="nombres"
+                [readonly]="!editando"
+              >
+            </div>
+
+            <div class="field">
+              <label for="apellidos">Apellidos</label>
+              <input
+                id="apellidos"
+                formControlName="apellidos"
+                [readonly]="!editando"
+              >
+            </div>
+
+            <div class="field">
+              <label>Tipo de documento</label>
+              <input
+                [value]="cliente.tipoDocumento"
+                readonly
+              >
+            </div>
+
+            <div class="field">
+              <label>Número de documento</label>
+              <input
+                [value]="cliente.numeroDocumento"
+                readonly
+              >
+            </div>
+
+            <div class="field">
+              <label>Correo electrónico</label>
+              <input [value]="cliente.email" readonly>
+            </div>
+
+            <div class="field">
+              <label for="telefono">Teléfono</label>
+              <input
+                id="telefono"
+                formControlName="telefono"
+                [readonly]="!editando"
+              >
+            </div>
+
+            <div class="field full">
+              <label for="direccion">Dirección</label>
+              <input
+                id="direccion"
+                formControlName="direccion"
+                [readonly]="!editando"
+              >
+            </div>
+
+            <div class="field">
+              <label for="fechaNacimiento">
+                Fecha de nacimiento
+              </label>
+
+              <input
+                id="fechaNacimiento"
+                type="date"
+                formControlName="fechaNacimiento"
+                [readonly]="!editando"
+              >
+            </div>
+          </div>
+
+          <div *ngIf="editando" class="actions">
+            <button
+              class="secondary"
+              type="button"
+              (click)="cancelarEdicion()"
+              [disabled]="saving"
+            >
+              Cancelar
+            </button>
+
+            <button
+              class="primary"
+              type="submit"
+              [disabled]="saving"
+            >
+              {{ saving ? 'Guardando...' : 'Guardar cambios' }}
+            </button>
+          </div>
+        </form>
+      </section>
+    </section>
+  </main>
+</div>

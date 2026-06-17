@@ -1,16 +1,10 @@
-import { Component, signal } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { LoginCliente } from './components/login-cliente/login-cliente';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true, // Siempre recomendado ponerlo explícitamente
-  imports: [
-    RouterOutlet, // Permite inyectar las rutas (como el RegistrarCliente)
-  ],
-  templateUrl: './app.html',
-  styleUrl: './app.css',
+  standalone: true,
+  imports: [RouterOutlet],
+  templateUrl: './app.html'
 })
-export class App {
-  protected readonly title = signal('261CC341AngularTawsFrontend');
-}
+export class App {}

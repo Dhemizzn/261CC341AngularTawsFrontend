@@ -1,14 +1,33 @@
 import { Routes } from '@angular/router';
-import { RegistrarCliente } from './components/registrar-cliente/registrar-cliente';
-import { LoginCliente } from './components/login-cliente/login-cliente';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
-    path: 'register',
-    component: RegistrarCliente, // Al cargar la app, se mostrará este componente de inmediato
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'login'
   },
   {
-    path: '',
-    component: LoginCliente,
+    path: 'login',
+    loadComponent: () =>
+      import('./components/login-cliente/login-cliente')
+        .then(component => component.LoginCliente)
   },
+  {
+    path: 'registro',
+    loadComponent: () =>
+      import('./components/registrar-cliente/registrar-cliente')
+        .then(component => component.RegistrarCliente)
+  },
+  {
+    path: 'mi-cuenta',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./components/datos-usuario/datos-usuario')
+        .then(component => component.DatosUsuario)
+  },
+  {
+    path: '**',
+    redirectTo: 'login'
+  }
 ];

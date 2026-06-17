@@ -1,10 +1,16 @@
 export interface ClienteResponse {
-  idCliente: string;
+  id: number;
   nombre: string;
-  apellidoPrimero: string;
-  apellidoSegundo: string;
-  telefono: string;
+
+  apellido?: string;
   email: string;
-  numeroDni: string;
-  numeroRuc: string | null;
+  telefono?: string;
+
+  tipoDocumento?: string;
+  numeroDocumento?: string;
+  direccion?: string;
+  fechaNacimiento?: string;
+
+  codigoSocio?: string;
+  estado?: string;
 }

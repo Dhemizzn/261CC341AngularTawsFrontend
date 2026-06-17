@@ -1,44 +1,68 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import {
+  FormBuilder,
+  ReactiveFormsModule,
+  Validators
+} from '@angular/forms';
+import { finalize } from 'rxjs';
+
 import { AuthLoginService } from '../../services/auth-login.service';
-import { AuthLoginRequest } from '../../model/api/request/auth-login-request';
 
 @Component({
   selector: 'app-login-cliente',
-  imports: [FormsModule],
+  standalone: true,
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login-cliente.html',
-  styleUrl: './login-cliente.css',
+  styleUrl: './login-cliente.css'
 })
 export class LoginCliente {
-  loginData = {
-    email: '',
-    password: '',
-  };
-  //private login: AuthLoginRequest;
+  private readonly formBuilder = inject(FormBuilder).nonNullable;
+  private readonly authService = inject(AuthLoginService);
+  private readonly router = inject(Router);
 
-  constructor(
-    private router: Router,
-    private authService: AuthLoginService,
-  ) {}
+  loading = false;
+  errorMessage = '';
 
-  onLogin() {
-    console.log('Attempting login with:', this.loginData);
+  readonly form = this.formBuilder.group({
+    email: [
+      '',
+      [
+        Validators.required,
+        Validators.email
+      ]
+    ],
+    password: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(6)
+      ]
+    ]
+  });
 
-    this.authService.login(this.loginData).subscribe({
-      next: (response) => {
-        alert('Login successful!');
-        console.log(response);
-        //this.router.navigate(['/user']);
-      },
-      error: (err) => {
-        console.error(err);
-        alert('Login failed: Invalid email or password.');
-      },
-    });
-  }
+  iniciarSesion(): void {
+    this.errorMessage = '';
 
-  goToRegister() {
-    this.router.navigate(['/register']);
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    this.loading = true;
+
+    this.authService
+      .login(this.form.getRawValue())
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe({
+        next: () => {
+          void this.router.navigate(['/mi-cuenta']);
+        },
+        error: error => {
+          this.errorMessage =
+            error?.error?.message ??
+            'Correo o contraseña incorrectos.';
+        }
+      });
   }
 }
