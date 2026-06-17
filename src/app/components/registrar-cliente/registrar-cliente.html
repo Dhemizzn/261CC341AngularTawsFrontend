@@ -1,11 +1,19 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+/>
 
 <div class="d-flex flex-column min-vh-100">
-
-  <header class="d-flex justify-content-between align-items-center px-4 py-2" style="background-color: #ff3b30; color: white; min-height: 70px;">
+  <header
+    class="d-flex justify-content-between align-items-center px-4 py-2"
+    style="background-color: #ff3b30; color: white; min-height: 70px"
+  >
     <div class="d-flex align-items-center gap-2">
-      <a href="javascript:void(0)" class="d-inline-block border-0 bg-transparent p-0 text-decoration-none">
-        <img src="PeruTours.png" style="max-height: 45px; width: auto;" />
+      <a
+        href="javascript:void(0)"
+        class="d-inline-block border-0 bg-transparent p-0 text-decoration-none"
+      >
+        <img src="PeruTours.png" style="max-height: 45px; width: auto" />
       </a>
     </div>
 
@@ -16,7 +24,10 @@
       <button class="btn p-2 text-dark border-0 bg-transparent">
         <i class="bi bi-bell fs-4"></i>
       </button>
-      <a class="btn p-0 border-0 rounded-circle overflow-hidden" style="width: 40px; height: 40px; background-color: #dbdbdb;">
+      <a
+        class="btn p-0 border-0 rounded-circle overflow-hidden"
+        style="width: 40px; height: 40px; background-color: #dbdbdb"
+      >
         <i class="bi bi-person-fill fs-4 text-dark"></i>
       </a>
     </div>
@@ -25,7 +36,6 @@
   <main class="flex-grow-1 d-flex justify-content-center py-5">
     <div class="container custom-form-container p-4">
       <form #formulario="ngForm" (ngSubmit)="guardar(formulario)" class="registro-grid">
-
         <div class="input-group">
           <label>Nombre</label>
           <input type="text" [(ngModel)]="request.nombre" name="nombre" required />
@@ -33,12 +43,22 @@
 
         <div class="input-group">
           <label>Apellido Primero</label>
-          <input type="text" [(ngModel)]="request.apellidoPrimero" name="apellidoPrimero" required />
+          <input
+            type="text"
+            [(ngModel)]="request.apellidoPrimero"
+            name="apellidoPrimero"
+            required
+          />
         </div>
 
         <div class="input-group">
           <label>Apellido Segundo</label>
-          <input type="text" [(ngModel)]="request.apellidoSegundo" name="apellidoSegundo" required />
+          <input
+            type="text"
+            [(ngModel)]="request.apellidoSegundo"
+            name="apellidoSegundo"
+            required
+          />
         </div>
 
         <div class="input-group">
@@ -48,12 +68,24 @@
 
         <div class="input-group">
           <label>Teléfono</label>
-          <input type="tel" [(ngModel)]="request.telefono" name="telefono" required pattern="[0-9]{9}" />
+          <input
+            type="tel"
+            [(ngModel)]="request.telefono"
+            name="telefono"
+            required
+            pattern="[0-9]{9}"
+          />
         </div>
 
         <div class="input-group">
           <label>DNI</label>
-          <input type="text" [(ngModel)]="request.numeroDni" name="dni" required pattern="[0-9]{8}" />
+          <input
+            type="text"
+            [(ngModel)]="request.numeroDni"
+            name="dni"
+            required
+            pattern="[0-9]{8}"
+          />
         </div>
 
         <div class="input-group">
@@ -64,28 +96,30 @@
         <div class="button-group">
           <button type="submit" class="btn-confirmar">Confirmar</button>
         </div>
-        
-         <div class="button-group">
-          <button type="button" (click)="goToLogin()" class="btn-confirmar">¿Ya tienes una cuenta?</button>
+
+        <div class="button-group">
+          <button type="button" (click)="goToLogin()" class="btn-confirmar">
+            ¿Ya tienes una cuenta?
+          </button>
         </div>
-
-
       </form>
     </div>
   </main>
 
-  <footer class="d-flex justify-content-between align-items-end px-4 py-3 bg-dark" style="min-height: 250px;">
+  <footer
+    class="d-flex justify-content-between align-items-end px-4 py-3 bg-dark"
+    style="min-height: 250px"
+  >
     <div class="d-flex gap-3 text-white">
-      <a href="javascript:void(0)"><i class="bi bi-facebook fs-5"></i></a>
-      <a href="javascript:void(0)"><i class="bi bi-instagram fs-5"></i></a>
-      <a href="javascript:void(0)"><i class="bi bi-twitter-x fs-5"></i></a>
+      <a href="javascript:void(0)" class="text-white-50"><i class="bi bi-facebook fs-5"></i></a>
+      <a href="javascript:void(0)" class="text-white-50"><i class="bi bi-instagram fs-5"></i></a>
+      <a href="javascript:void(0)" class="text-white-50"><i class="bi bi-twitter-x fs-5"></i></a>
     </div>
 
     <div class="d-flex gap-3">
-      <img src="footbarPeru1.png" style="height: 30px;" />
-      <img src="footbarPeru2.png" style="height: 30px;" />
-      <img src="footbarPeru3.png" style="height: 30px;" />
+      <img src="footbarPeru1.png" style="height: 30px" />
+      <img src="footbarPeru2.png" style="height: 30px" />
+      <img src="footbarPeru3.png" style="height: 30px" />
     </div>
   </footer>
-
 </div>
