@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ClienteService } from '../../services/cliente';
 import { ClienteRequest } from '../../model/api/request/cliente-request';
-
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-registrar-cliente',
   standalone: true,
@@ -23,20 +24,30 @@ export class RegistrarCliente {
     password: ''
   };
 
-  constructor(private clienteService: ClienteService) {}
+  constructor(private clienteService: ClienteService, private router: Router) {}
 
-  guardar() {
+  guardar(form: NgForm) {
     console.log(this.request);
-
-    this.clienteService.registrar(this.request).subscribe({
-      next: (r) => {
-        alert('Registrado');
-        console.log(r);
-      },
-      error: (e) => {
-        console.log(e);
-        alert(JSON.stringify(e.error));
-      }
-    });
+    if(form.invalid) {
+      alert('Formulario inválido. Por favor, complete todos los campos requeridos.');
+      return;
+    }else {
+      this.clienteService.registrar(this.request).subscribe({
+        
+        next: (r) => {
+          alert('Registrado');
+          console.log(r);
+        },
+        error: (e) => {
+          console.log(e);
+          alert(e.error);
+        }
+      });
+    }
   }
+
+  goToLogin() {
+    this.router.navigate(['/']);
+  }
+
 }
