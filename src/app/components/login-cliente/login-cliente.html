@@ -36,13 +36,22 @@
             class="form-control"
             placeholder="ejemplo@correo.com"
             [(ngModel)]="loginData.email"
+            name="emailInput1"
             required
+            pattern="\w{100}"
           />
         </div>
 
         <div class="col-12">
           <label class="form-label">Contraseña</label>
-          <input type="password" class="form-control" [(ngModel)]="loginData.password" required />
+          <input
+            type="password"
+            class="form-control"
+            [(ngModel)]="loginData.password"
+            name="emailInput2"
+            required
+            pattern="\w{30}"
+          />
         </div>
       </div>
 

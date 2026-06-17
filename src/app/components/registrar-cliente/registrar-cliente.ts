@@ -37,6 +37,7 @@ export class RegistrarCliente {
         next: (r) => {
           alert('Registrado');
           console.log(r);
+          this.router.navigate(['/']);
         },
         error: (e) => {
           console.log(e);

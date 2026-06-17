@@ -9,7 +9,7 @@ import { ClienteResponse } from '../model/api/response/cliente-response';
   providedIn: 'root',
 })
 export class AuthLoginService {
-  private api = 'http://localhost:8080/api/v1/cliente';
+  private api = 'http://localhost:8080/api/v1/cliente/login';
   private http = inject(HttpClient);
   login(credentials: AuthLoginRequest): Observable<ClienteResponse> {
     return this.http.post<ClienteResponse>(this.api, credentials);
