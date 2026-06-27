@@ -5,7 +5,7 @@ import { LoginCliente } from './components/login-cliente/login-cliente';
 export const routes: Routes = [
   {
     path: 'register',
-    component: RegistrarCliente, // Al cargar la app, se mostrará este componente de inmediato
+    component: RegistrarCliente,
   },
   {
     path: '',
