@@ -27,24 +27,23 @@ export class RegistrarCliente {
   constructor(private clienteService: ClienteService, private router: Router) {}
 
   guardar(form: NgForm) {
-    console.log(this.request);
-    if(form.invalid) {
-      alert('Formulario inválido. Por favor, complete todos los campos requeridos.');
-      return;
-    }else {
-      this.clienteService.registrar(this.request).subscribe({
-        
-        next: (r) => {
-          alert('Registrado');
-          console.log(r);
-          this.router.navigate(['/']);
-        },
-        error: (e) => {
-          console.log(e);
-          alert(e.error);
-        }
-      });
-    }
+    console.log('Attempting register with:', this.request);
+
+    this.clienteService.registrar(this.request).subscribe({
+      next: (response) => {
+        alert('Registro exitoso.');
+        console.log(response);
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        console.error(err);
+      if (err.status == 0) {
+        alert('Error en la red: No es posible conectar con el servidor.')
+      } else {
+        alert(err.error);  
+      }
+      }
+    });    
   }
 
   goToLogin() {
