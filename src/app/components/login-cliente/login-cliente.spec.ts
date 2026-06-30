@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginCliente } from './login-cliente';
 import { AuthLoginService } from '../../services/auth-login.service';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { of, throwError } from 'rxjs';
 import { vi } from 'vitest';
 
@@ -24,7 +23,7 @@ describe('LoginCliente', () => {
     vi.stubGlobal('alert', vi.fn());
 
     await TestBed.configureTestingModule({
-      imports: [LoginCliente, FormsModule],
+      imports: [LoginCliente],
       providers: [
         { provide: AuthLoginService, useValue: authServiceMock },
         { provide: Router, useValue: routerMock }
@@ -36,26 +35,60 @@ describe('LoginCliente', () => {
     fixture.detectChanges();
   });
 
-  it('deberia llamar al servicio de login cuando las credenciales son correctas', () => {
-    authServiceMock.login.mockReturnValue(of({}));
-
-    component.onLogin();
-
-    expect(authServiceMock.login).toHaveBeenCalled();
-    expect(window.alert).toHaveBeenCalledWith('Login successful!');
+  it('debería crear el componente', () => {
+    expect(component).toBeTruthy();
   });
 
-  it('deberia mostrar alerta cuando el login falla', () => {
+  it('debería llamar al servicio de login cuando las credenciales son correctas', () => {
+    authServiceMock.login.mockReturnValue(of({}));
+
+    component.loginData = {
+      email: 'correo@correo.com',
+      password: '12345678'
+    };
+
+    component.onLogin();
+
+    expect(authServiceMock.login).toHaveBeenCalledWith(component.loginData);
+    expect(window.alert).toHaveBeenCalledWith('Inicio de sesión exitoso.');
+  });
+
+  it('debería mostrar mensaje de error cuando falla el login', () => {
     authServiceMock.login.mockReturnValue(
-      throwError(() => ({ error: 'Error' }))
+      throwError(() => ({
+        status: 401,
+        error: 'Credenciales inválidas'
+      }))
+    );
+
+    component.loginData = {
+      email: 'correo@correo.com',
+      password: '12345678'
+    };
+
+    component.onLogin();
+
+    expect(authServiceMock.login).toHaveBeenCalledWith(component.loginData);
+    expect(window.alert).toHaveBeenCalledWith('Credenciales inválidas');
+  });
+
+  it('debería mostrar error de red cuando el servidor no responde', () => {
+    authServiceMock.login.mockReturnValue(
+      throwError(() => ({
+        status: 0
+      }))
     );
 
     component.onLogin();
 
-    expect(authServiceMock.login).toHaveBeenCalled();
-
     expect(window.alert).toHaveBeenCalledWith(
-      'Login failed: Invalid email or password.'
+      'Error en la red: No es posible conectar con el servidor.'
     );
+  });
+
+  it('debería navegar al registro', () => {
+    component.goToRegister();
+
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/register']);
   });
 });

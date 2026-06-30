@@ -27,13 +27,17 @@ export class LoginCliente {
 
     this.authService.login(this.loginData).subscribe({
       next: (response) => {
-        alert('Login successful!');
+        alert('Inicio de sesión exitoso.');
         console.log(response);
         //this.router.navigate(['/user']);
       },
       error: (err) => {
         console.error(err);
-        alert('Login failed: Invalid email or password.');
+        if (err.status == 0) {
+          alert('Error en la red: No es posible conectar con el servidor.')
+        } else {
+          alert(err.error);  
+        }
       },
     });
   }
